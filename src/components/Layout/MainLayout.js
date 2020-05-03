@@ -5,6 +5,11 @@ import {
   // MdCardGiftcard,
   MdLoyalty,
 } from 'react-icons/md';
+
+import {
+  connect
+} from 'react-redux';
+
 import NotificationSystem from 'react-notification-system';
 import { NOTIFICATION_SYSTEM_STYLE } from 'utils/constants';
 
@@ -15,53 +20,25 @@ class MainLayout extends React.Component {
       .classList.contains('cr-sidebar--open');
   }
 
-  componentWillReceiveProps({ breakpoint }) {
-    if (breakpoint !== this.props.breakpoint) {
-      this.checkBreakpoint(breakpoint);
+  componentDidUpdate(prevProps){
+    if(this.props.success !== prevProps.success ){
+      setTimeout(() => {
+        if (!this.notificationSystem) {
+          return;
+        }
+
+        this.notificationSystem.addNotification({
+          title: <MdImportantDevices />,
+          message: 'Entity successfully created.',
+          level: 'info',
+        });
+      }, 1000);
     }
   }
 
   componentDidMount() {
     this.checkBreakpoint(this.props.breakpoint);
-
-    setTimeout(() => {
-      if (!this.notificationSystem) {
-        return;
-      }
-
-      this.notificationSystem.addNotification({
-        title: <MdImportantDevices />,
-        message: 'Template',
-        level: 'info',
-      });
-    }, 1500);
-
-    setTimeout(() => {
-      if (!this.notificationSystem) {
-        return;
-      }
-
-      this.notificationSystem.addNotification({
-        title: <MdLoyalty />,
-        message:
-          'Message Template',
-        level: 'info',
-      });
-    }, 2500);
   }
-
-  // close sidebar when
-  handleContentClick = event => {
-    // close sidebar if sidebar is open and screen size is less than `md`
-    if (
-      MainLayout.isSidebarOpen() &&
-      (this.props.breakpoint === 'xs' ||
-        this.props.breakpoint === 'sm' ||
-        this.props.breakpoint === 'md')
-    ) {
-      this.openSidebar('close');
-    }
-  };
 
   checkBreakpoint(breakpoint) {
     switch (breakpoint) {
@@ -109,4 +86,12 @@ class MainLayout extends React.Component {
   }
 }
 
-export default MainLayout;
+function mapStateToProps(state){
+  const loading = Object.values(state).map(v => v.loading).reduce((boolean, loading) => loading || boolean, false);
+  const success = Object.values(state).map(v => v.success).reduce((boolean, success) => success || boolean, false);
+  return {
+    loading,
+    success
+  }
+}
+export default connect(mapStateToProps)(MainLayout);

@@ -10,7 +10,8 @@ import {
   MdSettings,
   MdInsertPhoto,
   MdVideocam,
-  MdShoppingBasket
+  MdShoppingBasket,
+  MdAdd
 } from 'react-icons/md';
 
 import {
@@ -45,6 +46,12 @@ const recipes = [
     name: 'processed',
     exact: false,
     Icon: MdBook,
+  },
+  {
+    to: '/recipes/create',
+    name: 'create',
+    exact: false,
+    Icon: MdAdd,
   }
 ];
 
