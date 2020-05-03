@@ -1,0 +1,7 @@
+{
+  "live": false,
+  "apis": {
+    "main": "http://localhost:3001/api/v1"
+  },
+  "userActivityLog": false
+}

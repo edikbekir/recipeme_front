@@ -20,6 +20,8 @@ class AuthForm extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
+
+    this.props.submitAuth(this.props.data, this.props.authState);
   };
 
   renderButtonText() {
@@ -47,8 +49,14 @@ class AuthForm extends React.Component {
       confirmPasswordInputProps,
       children,
       onLogoClick,
+      data,
+      submitAuth,
+      onChange,
+      firstNameLabel,
+      firstNameInputProps,
+      lastNameLabel,
+      lastNameInputProps
     } = this.props;
-
     return (
       <Form onSubmit={this.handleSubmit}>
         {showLogo && (
@@ -64,30 +72,36 @@ class AuthForm extends React.Component {
         )}
         <FormGroup>
           <Label for={usernameLabel}>{usernameLabel}</Label>
-          <Input {...usernameInputProps} />
+          <Input name="email" {...usernameInputProps} value={data.email} onChange={onChange}/>
         </FormGroup>
         <FormGroup>
           <Label for={passwordLabel}>{passwordLabel}</Label>
-          <Input {...passwordInputProps} />
+          <Input name="password" {...passwordInputProps} value={data.password} onChange={onChange}/>
         </FormGroup>
         {this.isSignup && (
           <FormGroup>
             <Label for={confirmPasswordLabel}>{confirmPasswordLabel}</Label>
-            <Input {...confirmPasswordInputProps} />
+            <Input {...confirmPasswordInputProps} name="password_confirmation" value={data.password_confirmation} onChange={onChange}/>
           </FormGroup>
         )}
-        <FormGroup check>
-          <Label check>
-            <Input type="checkbox" />{' '}
-            {this.isSignup ? 'Agree the terms and policy' : 'Remember me'}
-          </Label>
-        </FormGroup>
+        {this.isSignup && (
+          <FormGroup>
+            <Label for={firstNameLabel}>{firstNameLabel}</Label>
+            <Input {...firstNameInputProps} name="first_name" value={data.first_name} onChange={onChange}/>
+          </FormGroup>
+        )}
+        {this.isSignup && (
+          <FormGroup>
+            <Label for={lastNameLabel}>{lastNameLabel}</Label>
+            <Input {...lastNameInputProps} name="last_name" value={data.last_name} onChange={onChange}/>
+          </FormGroup>
+        )}
         <hr />
         <Button
           size="lg"
           className="bg-gradient-theme-left border-0"
           block
-          onClick={this.handleSubmit}>
+          >
           {this.renderButtonText()}
         </Button>
 
@@ -139,6 +153,16 @@ AuthForm.defaultProps = {
   passwordInputProps: {
     type: 'password',
     placeholder: 'your password',
+  },
+  firstNameLabel: 'First Name',
+  firstNameInputProps: {
+    type: 'text',
+    placeholder: 'your first name',
+  },
+  lastNameLabel: 'Last Name',
+  lastNameInputProps: {
+    type: 'text',
+    placeholder: 'your last name',
   },
   confirmPasswordLabel: 'Confirm Password',
   confirmPasswordInputProps: {

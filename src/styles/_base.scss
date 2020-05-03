@@ -40,3 +40,10 @@ button,
   margin: 0;
   overflow-x: hidden;
 }
+
+.error-message {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  color: red
+}

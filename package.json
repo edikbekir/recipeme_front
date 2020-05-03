@@ -31,6 +31,7 @@
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "store": "^2.0.12",
     "victory": "^32.0.0"
   },
   "devDependencies": {

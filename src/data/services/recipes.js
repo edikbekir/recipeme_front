@@ -1,7 +1,8 @@
 import axios from 'axios';
 import AuthHeader from '../../helpers/AuthHeader';
-const API_URL = process.env.API_URL;
+import config from '../../config/config';
 
+const API_URL = process.env.API_URL;
 
 export const recipeService = {
   createRecipe
@@ -12,10 +13,9 @@ function createRecipe(params) {
   formData.append('image', params.file);
   formData.append('name', params.name);
   formData.append('description', params.description);
-  // Need to stash to .env
   return axios({
     method: 'post',
-    url: 'http://localhost:3001/api/v1/recipes',
+    url: `${config.apis.main}/recipes`,
     data: formData,
     headers: {'Content-Type': 'multipart/form-data' }
     })

@@ -16,6 +16,8 @@ import {
   MdPersonPin,
   MdSettingsApplications,
 } from 'react-icons/md';
+import { connect } from 'react-redux';
+import { userActions } from '../../data/actions/user';
 import {
   Button,
   ListGroup,
@@ -135,9 +137,8 @@ class Header extends React.Component {
             >
               <PopoverBody className="p-0 border-light">
                 <UserCard
-                  title="Jane"
-                  subtitle="jane@jane.com"
-                  text="Last updated 3 mins ago"
+                  title={this.props.user && this.props.user.first_name}
+                  subtitle={this.props.user && this.props.user.email}
                   className="border-light"
                 >
                   <ListGroup flush>
@@ -156,8 +157,8 @@ class Header extends React.Component {
                     <ListGroupItem tag="button" action className="border-light">
                       <MdHelp /> Help
                     </ListGroupItem>
-                    <ListGroupItem tag="button" action className="border-light">
-                      <MdExitToApp /> Signout
+                    <ListGroupItem onClick={this.props.logout} tag="button" action className="border-light">
+                      <MdExitToApp /> Logout
                     </ListGroupItem>
                   </ListGroup>
                 </UserCard>
@@ -170,4 +171,16 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+function mapDispatchToProps(dispatch){
+  return {
+    logout: () => dispatch(userActions.logout())
+  }
+}
+
+function mapStateToProps(state){
+  return {
+    user: state.user.user
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

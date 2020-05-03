@@ -1,8 +1,8 @@
 import { Content, Footer, Header, Sidebar } from 'components/Layout';
+import { Redirect } from 'react-router-dom';
 import React from 'react';
 import {
   MdImportantDevices,
-  // MdCardGiftcard,
   MdLoyalty,
 } from 'react-icons/md';
 
@@ -65,8 +65,11 @@ class MainLayout extends React.Component {
 
   render() {
     const { children } = this.props;
+
     return (
       <main className="cr-app bg-light">
+        { !this.props.user.loggedIn && <Redirect to="/login" /> }
+
         <Sidebar />
         <Content fluid onClick={this.handleContentClick}>
           <Header />
@@ -91,7 +94,8 @@ function mapStateToProps(state){
   const success = Object.values(state).map(v => v.success).reduce((boolean, success) => success || boolean, false);
   return {
     loading,
-    success
+    success,
+    user: state.user
   }
 }
 export default connect(mapStateToProps)(MainLayout);
