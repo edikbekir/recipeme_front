@@ -1,8 +1,9 @@
+import store from 'store';
 
 export default function AuthHeader(extraHeaders = {}) {
-    let headers = new Headers(),
-        user = localStorage.user,
-        authHeaders = ['email', 'token'];
+    let headers = new Headers();
+    const user = store.get('user');
+    const authHeaders = ['email', 'token'];
 
     for(let header of authHeaders)
         headers.append(header, user[header]);
