@@ -6,7 +6,8 @@ const API_URL = process.env.API_URL;
 
 export const recipeService = {
   createRecipe,
-  getPopularRecipes
+  getPopularRecipes,
+  getRecipeById
 };
 
 function getPopularRecipes(params){
@@ -31,6 +32,17 @@ function createRecipe(params) {
     method: 'post',
     headers: AuthHeader({'Content-Type': 'multipart/form-data' }),
     body: formData
+    })
+  .then( response => response.json())
+  .catch( error => new Error(error) )
+}
+
+function getRecipeById(id){
+  const url = `${config.apis.main}/recipes/${id}`;
+
+  return fetch(url, {
+    method: 'get',
+    headers: AuthHeader()
     })
   .then( response => response.json())
   .catch( error => new Error(error) )

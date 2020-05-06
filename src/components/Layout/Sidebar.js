@@ -36,7 +36,7 @@ const sidebarBackground = {
 
 const recipes = [
   {
-    to: '/recipes/popular',
+    to: '/popular',
     name: 'popular',
     exact: false,
     Icon: MdGrade

@@ -28,6 +28,13 @@ export default function reducer(state = initialState, action={}) {
     case recipeConstants.GET_POPULAR_RECIPES_FAILURE:
       return { ...state, loading: false, error: payload, popularRecipes: [], success: false};
 
+    case recipeConstants.GET_RECIPE_BY_ID_REQUEST:
+      return { ...state, loading: true, error: null, recipe: {}, success: false};
+    case recipeConstants.GET_RECIPE_BY_ID_SUCCESS:
+      return { ...state, loading: false, error: null, recipe: payload, success: true};
+    case recipeConstants.GET_RECIPE_BY_ID_FAILURE:
+      return { ...state, loading: false, error: payload, recipe: {}, success: false};
+
     default:
       return state
   }

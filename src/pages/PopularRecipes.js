@@ -10,6 +10,7 @@ import { bgCards, gradientCards, overlayCards } from 'demos/cardPage';
 import { getStackLineChart, stackLineChartOptions } from 'demos/chartjs';
 import React, { useState } from 'react';
 import { Line } from 'react-chartjs-2';
+import { Link } from 'react-router-dom';
 import {
   Button,
   Card,
@@ -43,24 +44,26 @@ export class PopularRecipes extends React.Component {
             this.props.recipe.popularRecipes.map( (recipe, index) => {
               return (
                   <Col md={6} sm={6} xs={12} className="mb-3">
-                    <Card className="flex-row">
-                      {index % 2 === 0 && <CardImg
-                        className="card-img-left"
-                        src={bg1Image}
-                        style={{ width: 'auto', height: 150 }}
-                      />}
-                      <CardBody>
-                        <CardTitle style={{fontWeight: 'bold', fontSize: '24px'}}>{ recipe.name }</CardTitle>
-                        <CardText>
-                          { recipe.description }
-                        </CardText>
-                      </CardBody>
-                      {index % 2 !== 0 && <CardImg
-                        className="card-img-right"
-                        src={bg1Image}
-                        style={{ width: 'auto', height: 150 }}
-                      />}
-                    </Card>
+                    <Link className="link" to={`/recipes/${recipe.id}`}>
+                      <Card className="flex-row">
+                        {index % 2 === 0 && <CardImg
+                          className="card-img-left"
+                          src={bg1Image}
+                          style={{ width: 'auto', height: 150 }}
+                        />}
+                        <CardBody>
+                          <CardTitle style={{fontWeight: 'bold', fontSize: '24px'}}>{ recipe.name }</CardTitle>
+                          <CardText>
+                            { recipe.description }
+                          </CardText>
+                        </CardBody>
+                        {index % 2 !== 0 && <CardImg
+                          className="card-img-right"
+                          src={bg1Image}
+                          style={{ width: 'auto', height: 150 }}
+                        />}
+                      </Card>
+                    </Link>
                   </Col>)
             })
           }

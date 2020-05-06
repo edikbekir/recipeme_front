@@ -47,3 +47,112 @@ button,
   justify-content: center;
   color: red
 }
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #696969;
+}
+
+.recipe-image {
+  width: 100%;
+  height: auto;
+}
+
+.recipe-page {
+  padding: 20px 0 20px 0;
+}
+
+.recipe-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.recipe-info div {
+  padding: 10px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.ingredients-chef-section {
+  display: flex;
+}
+
+.ingredient {
+  font-size: 20px;
+  position: relative;
+  .ingredient-right{
+    display: flex;
+    justify-content: flex-end;
+  }
+  .ingredient-left{
+    display: flex;
+    justify-content: flex-start;
+    position: absolute;
+  }
+
+  span {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.ingredients-header {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+hr {
+  border: 0;
+  border-bottom: 1px dashed #ccc;
+  height: 1px;
+  background: #999;
+}
+
+.chef-image-with-link {
+  display: flex;
+  justify-content: space-between;
+
+  img {
+    border-radius: 50%;
+  }
+}
+
+.chef-rating {
+  div {
+    padding: 5px;
+    text-align: center;
+    font-size: 17px;
+  }
+}
+
+.steps-nutritions-section {
+  display: flex;
+}
+
+.steps-header {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.step {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.chef-rating {
+  margin: 20px 0 20px 0;
+  border-radius: 10px;
+  background: #ECF6DE;
+  height: 260px;
+}

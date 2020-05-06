@@ -3,7 +3,8 @@ import { recipeConstants } from '../constants/recipes';
 
 export const recipeActions = {
   createRecipe,
-  getPopularRecipes
+  getPopularRecipes,
+  getRecipeById
 }
 
 function createRecipe(params){
@@ -40,4 +41,22 @@ function getPopularRecipes(params){
   function request() { return { type: recipeConstants.GET_POPULAR_RECIPES_REQUEST }};
   function success(payload) { return { type: recipeConstants.GET_POPULAR_RECIPES_SUCCESS, payload }};
   function failure(payload) { return {type: recipeConstants.GET_POPULAR_RECIPES_FAILURE, payload} };
+}
+
+function getRecipeById(id){
+  return dispatch => {
+    dispatch(request());
+
+    recipeService.getRecipeById(id)
+    .then( response => {
+      dispatch(success(response));
+    })
+    .catch( error => {
+      dispatch(failure(error.response));
+    })
+  }
+
+  function request() { return { type: recipeConstants.GET_RECIPE_BY_ID_REQUEST }};
+  function success(payload) { return { type: recipeConstants.GET_RECIPE_BY_ID_SUCCESS, payload }};
+  function failure(payload) { return {type: recipeConstants.GET_RECIPE_BY_ID_FAILURE, payload} };
 }
