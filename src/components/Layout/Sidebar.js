@@ -48,9 +48,9 @@ const recipes = [
     Icon: MdBook,
   },
   {
-    to: '/recipes/create',
+    to: '/recipes',
     name: 'create',
-    exact: false,
+    exact: true,
     Icon: MdAdd,
   }
 ];
@@ -204,10 +204,10 @@ class Sidebar extends React.Component {
             <NavItem className={bem.e('nav-item')}>
               <BSNavLink
                 id="showNavItem"
-                to="/shop"
+                to="/shop/types"
                 tag={NavLink}
                 activeClassName="active"
-                exact={false}
+                exact={true}
               >
                 <MdShoppingBasket className={bem.e('nav-item-icon')} />
                 <span className="">Shop</span>

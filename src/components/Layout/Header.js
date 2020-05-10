@@ -2,6 +2,7 @@ import Avatar from 'components/Avatar';
 import { UserCard } from 'components/Card';
 import Notifications from 'components/Notifications';
 import SearchInput from 'components/SearchInput';
+import Cart from 'components/Cart';
 import { notificationsData } from 'demos/header';
 import withBadge from 'hocs/withBadge';
 import React from 'react';
@@ -16,6 +17,8 @@ import {
   MdPersonPin,
   MdSettingsApplications,
 } from 'react-icons/md';
+import { NavLink as Redirect } from 'react-router-dom';
+
 import { connect } from 'react-redux';
 import { userActions } from '../../data/actions/user';
 import {
@@ -29,6 +32,7 @@ import {
   NavLink,
   Popover,
   PopoverBody,
+  NavLink as BSNavLink
 } from 'reactstrap';
 import bn from 'utils/bemnames';
 
@@ -108,6 +112,14 @@ class Header extends React.Component {
                 />
               )}
             </NavLink>
+            <Redirect
+              className="text-uppercase"
+              to="/view-cart"
+              activeClassName="active"
+              exact={true}
+            >
+              <Cart />
+            </Redirect>
             <Popover
               placement="bottom"
               isOpen={this.state.isOpenNotificationPopover}

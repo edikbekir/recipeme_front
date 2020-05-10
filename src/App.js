@@ -27,6 +27,9 @@ const ProgressPage = React.lazy(() => import('pages/ProgressPage'));
 const TablePage = React.lazy(() => import('pages/TablePage'));
 const TypographyPage = React.lazy(() => import('pages/TypographyPage'));
 const WidgetPage = React.lazy(() => import('pages/WidgetPage'));
+const FoodTypesPage = React.lazy(() => import('pages/FoodTypesPage'));
+const ProductsPage = React.lazy(() => import('pages/ProductsPage'));
+const ViewCartPage = React.lazy(() => import('pages/ViewCartPage'));
 
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split('/').pop()}`;
@@ -58,10 +61,13 @@ class App extends React.Component {
             <MainLayout breakpoint={this.props.breakpoint}>
               <React.Suspense fallback={<PageSpinner />}>
                 <Route exact path="/" component={DashboardPage} />
-                <Route exact path="/recipes/create" component={CreateRecipePage} />
-                <Route exact path="/recipes/:id" component={RecipePage} />
+                <Route exact path="/recipes" component={CreateRecipePage} />
                 <Route exact path="/popular" component={PopularRecipes} />
+                <Route path="/recipes/:id" component={RecipePage} />
+                <Route exact path="/shop/types" component={FoodTypesPage} />
+                <Route path="/shop/types/:id/products" component={ProductsPage} />
                 <Route exact path="/login-modal" component={AuthModalPage} />
+                <Route exact path="/view-cart" component={ViewCartPage} />
                 <Route exact path="/buttons" component={ButtonPage} />
                 <Route exact path="/cards" component={CardPage} />
                 <Route exact path="/widgets" component={WidgetPage} />
