@@ -3,7 +3,7 @@ import store from 'store';
 export default function AuthHeader(extraHeaders = {}) {
     let headers = new Headers();
     const user = store.get('user');
-    const authHeaders = ['email', 'token'];
+    const authHeaders = ['email'];
 
     for(let header of authHeaders)
         headers.append(header, user[header]);

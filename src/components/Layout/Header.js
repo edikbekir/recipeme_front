@@ -2,6 +2,7 @@ import Avatar from 'components/Avatar';
 import { UserCard } from 'components/Card';
 import Notifications from 'components/Notifications';
 import SearchInput from 'components/SearchInput';
+import Cart from 'components/Cart';
 import { notificationsData } from 'demos/header';
 import withBadge from 'hocs/withBadge';
 import React from 'react';
@@ -108,6 +109,7 @@ class Header extends React.Component {
                 />
               )}
             </NavLink>
+            <Cart />
             <Popover
               placement="bottom"
               isOpen={this.state.isOpenNotificationPopover}
