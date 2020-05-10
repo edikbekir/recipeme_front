@@ -44,7 +44,7 @@ export class PopularRecipes extends React.Component {
             this.props.recipe.popularRecipes.map( (recipe, index) => {
               return (
                   <Col md={6} sm={6} xs={12} className="mb-3">
-                    <Link className="link" to={`/recipes/${recipe.id}`}>
+                    <Link className="link" to={`/recipes/${recipe.id}`} exact={false}>
                       <Card className="flex-row">
                         {index % 2 === 0 && <CardImg
                           className="card-img-left"
