@@ -21,6 +21,7 @@ import { NavLink as Redirect } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { userActions } from '../../data/actions/user';
+import { searchActions } from '../../data/actions/search';
 import {
   Button,
   ListGroup,
@@ -92,7 +93,7 @@ class Header extends React.Component {
           </Button>
         </Nav>
         <Nav navbar>
-          <SearchInput />
+          <SearchInput onSearch={this.props.onSearch} searchResult={this.props.search} />
         </Nav>
 
         <Nav navbar className={bem.e('nav-right')}>
@@ -185,13 +186,17 @@ class Header extends React.Component {
 
 function mapDispatchToProps(dispatch){
   return {
-    logout: () => dispatch(userActions.logout())
+    logout: () => dispatch(userActions.logout()),
+    onSearch: query => dispatch(searchActions.search(query))
   }
 }
 
 function mapStateToProps(state){
+  const { user } = state.user;
+  const { search } = state.search;
   return {
-    user: state.user.user
+    user,
+    search
   }
 }
 

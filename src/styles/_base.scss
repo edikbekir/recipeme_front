@@ -360,3 +360,48 @@ hr {
   color: red;
   margin: 0 5% 0 5%;
 }
+
+.custom-scroll {
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+  }
+  &::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+    background-color: #F5F5F5;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: var(--font_colour_default);
+  }
+}
+
+.search-recipes-list {
+  width: 100%;
+  height: auto;
+  max-height: 150px;
+  position: absolute;
+  background-color: #fff;
+  text-align: left;
+  top: 32px;
+  left: 0;
+  padding: 0;
+  overflow: auto;
+  z-index: 4;
+  box-shadow: 0 0 3px rgba(86, 96, 117, 0.7);
+
+  @extend .custom-scroll;
+}
+
+.search-recipes-list li {
+  padding: 10px;
+  line-height: 1;
+}
+
+.search-recipes-list li:hover {
+  background-color: #f7f7f7;
+  cursor: pointer;
+}
