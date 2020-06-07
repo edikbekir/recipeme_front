@@ -30,6 +30,8 @@ const WidgetPage = React.lazy(() => import('pages/WidgetPage'));
 const FoodTypesPage = React.lazy(() => import('pages/FoodTypesPage'));
 const ProductsPage = React.lazy(() => import('pages/ProductsPage'));
 const ViewCartPage = React.lazy(() => import('pages/ViewCartPage'));
+const DishesRecognitionPage = React.lazy(() => import('pages/DishesRecognitionPage'));
+const VideoRecognitionPage = React.lazy(() => import('pages/VideoRecognitionPage'));
 
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split('/').pop()}`;
@@ -65,6 +67,8 @@ class App extends React.Component {
                 <Route exact path="/popular" component={PopularRecipes} />
                 <Route path="/recipes/:id" component={RecipePage} />
                 <Route exact path="/shop/types" component={FoodTypesPage} />
+                <Route exact path="/processing/image" component={DishesRecognitionPage} />
+                <Route exact path="/processing/video" component={VideoRecognitionPage} />
                 <Route path="/shop/types/:id/products" component={ProductsPage} />
                 <Route exact path="/login-modal" component={AuthModalPage} />
                 <Route exact path="/view-cart" component={ViewCartPage} />

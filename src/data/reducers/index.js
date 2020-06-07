@@ -6,6 +6,7 @@ import types from './types';
 import products from './products';
 import carts from './carts';
 import search from './search';
+import recognitions from './recognitions';
 
 const rootReducer = combineReducers({
   recipes,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   types,
   products,
   carts,
-  search
+  search,
+  recognitions
 });
 
 export default rootReducer;
