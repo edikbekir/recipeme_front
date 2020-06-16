@@ -7,6 +7,8 @@ import React from 'react';
 import componentQueries from 'react-component-queries';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import './styles/reduction.scss';
+import { withTranslation } from 'react-i18next';
+
 
 const AlertPage = React.lazy(() => import('pages/AlertPage'));
 const AuthModalPage = React.lazy(() => import('pages/AuthModalPage'));
@@ -42,7 +44,7 @@ class App extends React.Component {
     return (
       <BrowserRouter basename={getBasename()}>
         <GAListener>
-          <Switch>
+          <Switch t={this.props.t} i18n={this.props.i18n}>
             <LayoutRoute
               exact
               path="/login"
@@ -60,36 +62,36 @@ class App extends React.Component {
               )}
             />
 
-            <MainLayout breakpoint={this.props.breakpoint}>
+            <MainLayout {...this.props} breakpoint={this.props.breakpoint}>
               <React.Suspense fallback={<PageSpinner />}>
-                <Route exact path="/" component={DashboardPage} />
-                <Route exact path="/recipes" component={CreateRecipePage} />
-                <Route exact path="/popular" component={PopularRecipes} />
-                <Route path="/recipes/:id" component={RecipePage} />
-                <Route exact path="/shop/types" component={FoodTypesPage} />
-                <Route exact path="/processing/image" component={DishesRecognitionPage} />
-                <Route exact path="/processing/video" component={VideoRecognitionPage} />
-                <Route path="/shop/types/:id/products" component={ProductsPage} />
-                <Route exact path="/login-modal" component={AuthModalPage} />
-                <Route exact path="/view-cart" component={ViewCartPage} />
-                <Route exact path="/buttons" component={ButtonPage} />
-                <Route exact path="/cards" component={CardPage} />
-                <Route exact path="/widgets" component={WidgetPage} />
-                <Route exact path="/typography" component={TypographyPage} />
-                <Route exact path="/alerts" component={AlertPage} />
-                <Route exact path="/tables" component={TablePage} />
-                <Route exact path="/badges" component={BadgePage} />
+                <Route exact path="/" component={props => (<DashboardPage {...this.props}/> )} />
+                <Route exact path="/recipes" component={props => (<CreateRecipePage {...this.props}/> )} />
+                <Route exact path="/popular" component={props => (<PopularRecipes {...this.props}/> )} />
+                <Route path="/recipes/:id" component={props => (<RecipePage {...this.props}/> )} />
+                <Route exact path="/shop/types" component={props => (<FoodTypesPage {...this.props}/> )} />
+                <Route exact path="/processing/image" component={props => (<DishesRecognitionPage {...this.props} /> )} />
+                <Route exact path="/processing/video" component={props => (<VideoRecognitionPage {...this.props}/> )} />
+                <Route path="/shop/types/:id/products" component={props => (<ProductsPage {...this.props}/> )} />
+                <Route exact path="/login-modal" component={props => (<AuthModalPage {...this.props}/> )} />
+                <Route exact path="/view-cart" component={props => (<ViewCartPage {...this.props}/> )} />
+                <Route exact path="/buttons" component={props => (<ButtonPage {...this.props}/> )} />
+                <Route exact path="/cards" component={props => (<CardPage {...this.props}/> )} />
+                <Route exact path="/widgets" component={props => (<WidgetPage {...this.props}/> )} />
+                <Route exact path="/typography" component={props => (<TypographyPage {...this.props}/> )} />
+                <Route exact path="/alerts" component={props => (<AlertPage {...this.props}/> )} />
+                <Route exact path="/tables" component={props => (<TablePage {...this.props}/> )} />
+                <Route exact path="/badges" component={props => (<BadgePage {...this.props}/> )} />
                 <Route
                   exact
                   path="/button-groups"
-                  component={ButtonGroupPage}
+                  component={props => (<ButtonGroupPage {...this.props}/> )}
                 />
-                <Route exact path="/dropdowns" component={DropdownPage} />
-                <Route exact path="/progress" component={ProgressPage} />
-                <Route exact path="/modals" component={ModalPage} />
-                <Route exact path="/forms" component={FormPage} />
-                <Route exact path="/input-groups" component={InputGroupPage} />
-                <Route exact path="/charts" component={ChartPage} />
+                <Route exact path="/dropdowns" component={props => (<DropdownPage {...this.props}/> )} />
+                <Route exact path="/progress" component={props => (<ProgressPage {...this.props}/> )} />
+                <Route exact path="/modals" component={props => (<ModalPage {...this.props}/> )} />
+                <Route exact path="/forms" component={props => (<FormPage {...this.props}/> )} />
+                <Route exact path="/input-groups" component={props => (<InputGroupPage {...this.props}/> )} />
+                <Route exact path="/charts" component={props => (<ChartPage {...this.props}/> )} />
               </React.Suspense>
             </MainLayout>
             <Redirect to="/" />
@@ -124,4 +126,4 @@ const query = ({ width }) => {
   return { breakpoint: 'xs' };
 };
 
-export default componentQueries(query)(App);
+export default withTranslation('common')(App);

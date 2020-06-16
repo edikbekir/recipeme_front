@@ -64,15 +64,15 @@ class MainLayout extends React.Component {
   }
 
   render() {
-    const { children } = this.props;
+    const { children, i18n, t } = this.props;
 
     return (
       <main className="cr-app bg-light">
         { !this.props.user.loggedIn && <Redirect to="/login" /> }
 
-        <Sidebar />
+        <Sidebar i18n={i18n} t={t} />
         <Content fluid onClick={this.handleContentClick}>
-          <Header />
+          <Header i18n={i18n} t={t} />
           {children}
           <Footer />
         </Content>

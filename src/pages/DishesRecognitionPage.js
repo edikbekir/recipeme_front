@@ -47,9 +47,9 @@ export class DishesRecognitionPage extends React.Component {
   }
 
   render(){
+    console.log(this.props.t('welcome.title'))
     const { error, loading, dishes, showDishes, ingredients, currentDish, instructions} = this.props;
     const { showInstructions, showIngredients, showIngredientImageIndex, url} = this.state;
-    console.log(this.props)
     return (
       <Page className="image-recognition-root" title="Recipes" breadcrumbs={[{ name: 'Image Recognition', active: true }]}>
         <Row className="image-recognition-container">
@@ -180,7 +180,6 @@ export class DishesRecognitionPage extends React.Component {
 
 const mapStateToProps = state => {
   const { dishes, loading, error, showDishes, ingredients, currentDish, instructions} = state.recognitions;
-  console.log(currentDish)
   return {
     dishes,
     loading,

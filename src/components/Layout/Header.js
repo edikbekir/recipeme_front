@@ -6,6 +6,8 @@ import Cart from 'components/Cart';
 import { notificationsData } from 'demos/header';
 import withBadge from 'hocs/withBadge';
 import React from 'react';
+import en from '../../assets/img/languages/en.png';
+import ua from '../../assets/img/languages/ua.png';
 import {
   MdClearAll,
   MdExitToApp,
@@ -84,7 +86,7 @@ class Header extends React.Component {
 
   render() {
     const { isNotificationConfirmed } = this.state;
-
+    const { i18n, t } = this.props;
     return (
       <Navbar light expand className={bem.b('bg-white')}>
         <Nav navbar className="mr-2">
@@ -97,6 +99,14 @@ class Header extends React.Component {
         </Nav>
 
         <Nav navbar className={bem.e('nav-right')}>
+          <NavItem>
+            <span className="languageIcon" onClick={() => i18n.changeLanguage('en')}>
+              <img style={{width: '40px'}} src={en} />
+            </span>
+            <span className="languageIcon" onClick={() => i18n.changeLanguage('ua')}>
+              <img style={{width: '40px'}} src={ua} />
+            </span>
+          </NavItem>
           <NavItem className="d-inline-flex">
             <NavLink id="Popover1" className="position-relative">
               {isNotificationConfirmed ? (

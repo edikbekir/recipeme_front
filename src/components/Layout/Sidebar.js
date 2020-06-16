@@ -86,6 +86,7 @@ class Sidebar extends React.Component {
   };
 
   render() {
+    const { t } = this.props;
     return (
       <aside className={bem.b()} data-image={sidebarBgImage}>
         <div className={bem.e('background')} style={sidebarBackground} />
@@ -117,7 +118,7 @@ class Sidebar extends React.Component {
                   exact={exact}
                 >
                   <Icon className={bem.e('nav-item-icon')} />
-                  <span className="">{name}</span>
+                  <span className="">{t('dashboard')}</span>
                 </BSNavLink>
               </NavItem>
             ))}
@@ -129,7 +130,7 @@ class Sidebar extends React.Component {
               <BSNavLink className={bem.e('nav-item-collapse')}>
                 <div className="d-flex">
                   <FaBook className={bem.e('nav-item-icon')} />
-                  <span className=" align-self-start">Recipes</span>
+                  <span className=" align-self-start">{t('recipes')}</span>
                 </div>
                 <MdKeyboardArrowDown
                   className={bem.e('nav-item-icon')}
@@ -169,7 +170,7 @@ class Sidebar extends React.Component {
               <BSNavLink className={bem.e('nav-item-collapse')}>
                 <div className="d-flex">
                   <MdSettings className={bem.e('nav-item-icon')} />
-                  <span className="">Processing</span>
+                  <span className="">{t('processing')}</span>
                 </div>
                 <MdKeyboardArrowDown
                   className={bem.e('nav-item-icon')}
@@ -210,7 +211,7 @@ class Sidebar extends React.Component {
                 exact={true}
               >
                 <MdShoppingBasket className={bem.e('nav-item-icon')} />
-                <span className="">Shop</span>
+                <span className="">{t('shop')}</span>
               </BSNavLink>
             </NavItem>
           </Nav>
