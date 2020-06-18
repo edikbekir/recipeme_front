@@ -53,8 +53,8 @@ export class ProductCounter extends React.Component {
           </div>
           <div className="button" onClick={() => this.increaseCounter()}>+</div>
         </div>
-        <div className="total">Total: ${this.state.counter * this.props.product.price}</div>
-        <div className="add-to-cart" onClick={() => this.state.counter > 0 ? this.props.onAddProductToCart(this.props.product, this.state.counter) : () => ({})} ><MdAddShoppingCart /> Add to cart</div>
+        <div className="total">{this.props.t('total')}: ${this.state.counter * this.props.product.price}</div>
+        <div className="add-to-cart" onClick={() => this.state.counter > 0 ? this.props.onAddProductToCart(this.props.product, this.state.counter) : () => ({})} ><MdAddShoppingCart /> {this.props.t('add_to_cart')}</div>
       </div>
     )
   }

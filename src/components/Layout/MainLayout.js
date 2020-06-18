@@ -21,19 +21,19 @@ class MainLayout extends React.Component {
   }
 
   componentDidUpdate(prevProps){
-    if(this.props.success !== prevProps.success ){
-      setTimeout(() => {
-        if (!this.notificationSystem) {
-          return;
-        }
-
-        this.notificationSystem.addNotification({
-          title: <MdImportantDevices />,
-          message: 'Entity successfully created.',
-          level: 'info',
-        });
-      }, 1000);
-    }
+    // if(this.props.success !== prevProps.success ){
+    //   setTimeout(() => {
+    //     if (!this.notificationSystem) {
+    //       return;
+    //     }
+    //
+    //     this.notificationSystem.addNotification({
+    //       title: <MdImportantDevices />,
+    //       message: 'Entity successfully created.',
+    //       level: 'info',
+    //     });
+    //   }, 1000);
+    // }
   }
 
   componentDidMount() {

@@ -4,14 +4,15 @@ import { recognitionConstants } from '../constants/recognitions';
 export const recognitionActions = {
   getDishes,
   getIngredients,
-  getInstructions
+  getInstructions,
+  reset
 }
 
-function getDishes(id){
+function getDishes(id, flag=false){
   return dispatch => {
     dispatch(request());
 
-    recognitionService.getDishes(id)
+    recognitionService.getDishes(id, flag)
     .then( response => {
       const res = response.data.length > 0 ? response.data : null;
       dispatch(success(res));
@@ -31,6 +32,12 @@ function getDishes(id){
 
 function formatEstimatedPrice(cents){
   return (cents / 10).toFixed(1);
+}
+
+function reset(){
+  return dispatch => {
+    dispatch({ type: recognitionConstants.RESET });
+  }
 }
 
 function getIngredients(dish){

@@ -95,7 +95,7 @@ class Header extends React.Component {
           </Button>
         </Nav>
         <Nav navbar>
-          <SearchInput onSearch={this.props.onSearch} searchResult={this.props.search} />
+          <SearchInput t={t} onSearch={this.props.onSearch} searchResult={this.props.search} />
         </Nav>
 
         <Nav navbar className={bem.e('nav-right')}>
@@ -108,21 +108,6 @@ class Header extends React.Component {
             </span>
           </NavItem>
           <NavItem className="d-inline-flex">
-            <NavLink id="Popover1" className="position-relative">
-              {isNotificationConfirmed ? (
-                <MdNotificationsNone
-                  size={25}
-                  className="text-secondary can-click"
-                  onClick={this.toggleNotificationPopover}
-                />
-              ) : (
-                <MdNotificationsActiveWithBadge
-                  size={25}
-                  className="text-secondary can-click animated swing infinite"
-                  onClick={this.toggleNotificationPopover}
-                />
-              )}
-            </NavLink>
             <Redirect
               className="text-uppercase"
               to="/view-cart"
@@ -131,16 +116,6 @@ class Header extends React.Component {
             >
               <Cart />
             </Redirect>
-            <Popover
-              placement="bottom"
-              isOpen={this.state.isOpenNotificationPopover}
-              toggle={this.toggleNotificationPopover}
-              target="Popover1"
-            >
-              <PopoverBody>
-                <Notifications notificationsData={notificationsData} />
-              </PopoverBody>
-            </Popover>
           </NavItem>
 
           <NavItem>

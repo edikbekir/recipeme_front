@@ -51,13 +51,13 @@ export class DishesRecognitionPage extends React.Component {
     const { error, loading, dishes, showDishes, ingredients, currentDish, instructions} = this.props;
     const { showInstructions, showIngredients, showIngredientImageIndex, url} = this.state;
     return (
-      <Page className="image-recognition-root" title="Recipes" breadcrumbs={[{ name: 'Image Recognition', active: true }]}>
+      <Page className="image-recognition-root" title={this.props.t('recognize_by_image')} breadcrumbs={[{ name: 'Image Recognition', active: true }]}>
         <Row className="image-recognition-container">
           {
             showDishes && (
               <>
                 <div className="image-recognition-input">
-                  <input onChange={e => this.handleUrlChange(e.target.value)} placeholder="Enter the path to the image of the dish" className="image-recognition-input" type="text" />
+                  <input onChange={e => this.handleUrlChange(e.target.value)} placeholder={this.props.t('imageRecognitionPlaceholder')} className="image-recognition-input" type="text" />
                 </div>
                 <div className="image-recognition-button">
                   <Button onClick={() => this.props.onGetDishes(url)} className="start-recognition-button" color="success">Start</Button>

@@ -14,6 +14,8 @@ export default function reducer(state = initialState, action={}) {
       return { ...state, search: payload };
     case searchConstants.SEARCH_FAILURE:
       return { ...state, search: [] };
+    case searchConstants.SEARCH_RESET:
+      return { ...state, search: [] };
     default:
       return state;
   }

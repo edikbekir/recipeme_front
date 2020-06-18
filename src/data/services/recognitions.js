@@ -10,8 +10,8 @@ export const recognitionService = {
   getInstructions
 };
 
-function getDishes(image_url){
-  const url = `${config.apis.main}/recognitions/recipes?url=${image_url}`;
+function getDishes(image_url, flag){
+  const url = `${config.apis.main}/recognitions/recipes?url=${image_url}&flag=${flag}`;
 
   return fetch(url, {
     method: 'get',

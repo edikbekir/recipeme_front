@@ -38,7 +38,7 @@ export class PopularRecipes extends React.Component {
   render(){
 
     return (
-      <Page title="Recipes" breadcrumbs={[{ name: 'Recipes', active: true }]}>
+      <Page title={this.props.t('recipes')} breadcrumbs={[{ name: 'Recipes', active: true }]}>
         <Row>
           {
             this.props.recipe.popularRecipes.map( (recipe, index) => {
@@ -48,7 +48,7 @@ export class PopularRecipes extends React.Component {
                       <Card className="flex-row">
                         {index % 2 === 0 && <CardImg
                           className="card-img-left"
-                          src={bg1Image}
+                          src={recipe.image}
                           style={{ width: 'auto', height: 150 }}
                         />}
                         <CardBody>
@@ -59,7 +59,7 @@ export class PopularRecipes extends React.Component {
                         </CardBody>
                         {index % 2 !== 0 && <CardImg
                           className="card-img-right"
-                          src={bg1Image}
+                          src={recipe.image}
                           style={{ width: 'auto', height: 150 }}
                         />}
                       </Card>

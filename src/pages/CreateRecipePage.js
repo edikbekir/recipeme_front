@@ -35,58 +35,60 @@ const CreateRecipePage = props => {
     props.onCreateRecipe(values)
   }
 
+  const { t } = props;
+
   return (
-    <Page title="Recipes" breadcrumbs={[{ name: 'Recipes', active: true }]}>
+    <Page title={t('createRecipe')} breadcrumbs={[{ name: 'Recipes', active: true }]}>
       <Row>
         <Col xl={12} lg={12} md={12}>
           <Card>
             <CardHeader>
               <div>
-                1. You need to come up with a name
+                {props.t('createRecipeName')}
               </div>
               <div>
-                2. You need to come up with a description
+                {props.t('createRecipeDescription')}
               </div>
               <div>
-                3. You need to add steps
+                {props.t('createRecipeSteps')}
               </div>
               <div>
-                4. You need to add ingredients
+                {props.t('createRecipeIngredients')}
               </div>
               <div>
-                5. You need to add image
+                {props.t('createRecipeImage')}
               </div>
             </CardHeader>
             <CardBody>
               <Form>
                 <FormGroup>
-                  <Label for="exampleEmail">Name</Label>
+                  <Label for="exampleEmail">{t('name')}</Label>
                   <Input
                     type="text"
                     name="name"
-                    placeholder="Please enter the name of your recipe"
+                    placeholder={t('createRecipeNamePlaceholder')}
                     value={values.name}
                     onChange={handleInputChange}
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label for="examplePassword">Description</Label>
+                  <Label for="examplePassword">{t('description')}</Label>
                   <Input
                     type="textarea"
                     name="description"
-                    placeholder="Please сreate a description of your recipe"
+                    placeholder={t('createRecipeDescriptionPlaceholder')}
                     value={values.description}
                     onChange={handleInputChange}
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label for="exampleFile">File</Label>
+                  <Label for="exampleFile">{t('file')}</Label>
                   <Input type="file" name="file" onChange={handleInputChange}/>
                   <FormText color="muted">
                     Max size: 5MB
                   </FormText>
                 </FormGroup>
-                <Button onClick={handleSubmit}>Submit</Button>
+                <Button onClick={handleSubmit}>{t('createRecipeSubmit')}</Button>
               </Form>
             </CardBody>
           </Card>

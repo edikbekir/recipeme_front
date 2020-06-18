@@ -34,33 +34,6 @@ const sidebarBackground = {
   backgroundRepeat: 'no-repeat',
 };
 
-const recipes = [
-  {
-    to: '/popular',
-    name: 'popular',
-    exact: false,
-    Icon: MdGrade
-  },
-  {
-    to: '/recipes/processed',
-    name: 'processed',
-    exact: false,
-    Icon: MdBook,
-  },
-  {
-    to: '/recipes',
-    name: 'create',
-    exact: true,
-    Icon: MdAdd,
-  }
-];
-
-const processing = [
-  { to: '/processing/image', name: 'image', exact: false, Icon: MdInsertPhoto },
-  { to: '/processing/video', name: 'video', exact: false, Icon: MdVideocam },
-];
-
-
 // const pageProcessing = [];
 
 const navItems = [
@@ -86,6 +59,31 @@ class Sidebar extends React.Component {
   };
 
   render() {
+    const processing = [
+      { to: '/processing/image', name: this.props.t('image'), exact: false, Icon: MdInsertPhoto },
+      { to: '/processing/video', name: this.props.t('video'), exact: false, Icon: MdVideocam },
+    ];
+
+    const recipes = [
+      {
+        to: '/popular',
+        name: this.props.t('popular'),
+        exact: false,
+        Icon: MdGrade
+      },
+      {
+        to: '/recipes/processed',
+        name: this.props.t('processed'),
+        exact: false,
+        Icon: MdBook,
+      },
+      {
+        to: '/recipes',
+        name: this.props.t('create'),
+        exact: true,
+        Icon: MdAdd,
+      }
+    ];
     const { t } = this.props;
     return (
       <aside className={bem.b()} data-image={sidebarBgImage}>

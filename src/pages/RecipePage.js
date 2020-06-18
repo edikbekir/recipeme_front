@@ -9,6 +9,7 @@ import { iconWidgetsData, numberWidgetsData } from 'demos/widgetPage';
 
 import { connect } from 'react-redux';
 import { recipeActions } from '../data/actions/recipes';
+import { searchActions } from '../data/actions/search';
 import recipeImage from 'assets/img/recipes/recipe.jpg';
 import chefImage from 'assets/img/recipes/chef.jpg';
 
@@ -17,6 +18,14 @@ import { MdLocalDining } from 'react-icons/md';
 export class RecipePage extends React.Component {
   componentDidMount = () => {
     this.props.getRecipeById(this.props.match.params.id)
+    this.props.resetSearch();
+  }
+
+  componentDidUpdate = (prevProps) => {
+    if(this.props.match.params.id !== prevProps.match.params.id){
+      this.props.getRecipeById(this.props.match.params.id)
+      this.props.resetSearch();
+    }
   }
 
   render(){
@@ -29,7 +38,7 @@ export class RecipePage extends React.Component {
         <Row>
           <Col md={8} sm={8} xs={12}>
             <img className="recipe-image"
-              src={recipeImage}
+              src={this.props.recipe.image_url}
               alt="recipe"
             />
             <RecipeInfo />
@@ -63,7 +72,8 @@ export class RecipePage extends React.Component {
 
 function mapDispatchToProps(dispatch){
   return {
-    getRecipeById: id => dispatch(recipeActions.getRecipeById(id))
+    getRecipeById: id => dispatch(recipeActions.getRecipeById(id)),
+    resetSearch: () => dispatch(searchActions.reset())
   }
 }
 

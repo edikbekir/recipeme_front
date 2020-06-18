@@ -17,7 +17,7 @@ const SearchInput = props => {
         onChange={(e) => props.onSearch(e.target.value)}
         type="search"
         className="cr-search-form__input"
-        placeholder="Search..."
+        placeholder={props.t('search')}
       />
       <ul className="search-recipes-list">
         {props.searchResult.map( data => {

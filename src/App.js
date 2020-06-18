@@ -39,7 +39,11 @@ const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split('/').pop()}`;
 };
 
+
 class App extends React.Component {
+  mergeProps = (props, currentProps) => {
+    return { ...props, ...currentProps};
+  }
   render() {
     return (
       <BrowserRouter basename={getBasename()}>
@@ -64,34 +68,34 @@ class App extends React.Component {
 
             <MainLayout {...this.props} breakpoint={this.props.breakpoint}>
               <React.Suspense fallback={<PageSpinner />}>
-                <Route exact path="/" component={props => (<DashboardPage {...this.props}/> )} />
-                <Route exact path="/recipes" component={props => (<CreateRecipePage {...this.props}/> )} />
-                <Route exact path="/popular" component={props => (<PopularRecipes {...this.props}/> )} />
-                <Route path="/recipes/:id" component={props => (<RecipePage {...this.props}/> )} />
-                <Route exact path="/shop/types" component={props => (<FoodTypesPage {...this.props}/> )} />
-                <Route exact path="/processing/image" component={props => (<DishesRecognitionPage {...this.props} /> )} />
-                <Route exact path="/processing/video" component={props => (<VideoRecognitionPage {...this.props}/> )} />
-                <Route path="/shop/types/:id/products" component={props => (<ProductsPage {...this.props}/> )} />
-                <Route exact path="/login-modal" component={props => (<AuthModalPage {...this.props}/> )} />
-                <Route exact path="/view-cart" component={props => (<ViewCartPage {...this.props}/> )} />
-                <Route exact path="/buttons" component={props => (<ButtonPage {...this.props}/> )} />
-                <Route exact path="/cards" component={props => (<CardPage {...this.props}/> )} />
-                <Route exact path="/widgets" component={props => (<WidgetPage {...this.props}/> )} />
-                <Route exact path="/typography" component={props => (<TypographyPage {...this.props}/> )} />
-                <Route exact path="/alerts" component={props => (<AlertPage {...this.props}/> )} />
-                <Route exact path="/tables" component={props => (<TablePage {...this.props}/> )} />
-                <Route exact path="/badges" component={props => (<BadgePage {...this.props}/> )} />
+                <Route exact path="/" component={props => (<DashboardPage {...this.mergeProps(this.props, props)}/> )} />
+                <Route exact path="/recipes" component={props => (<CreateRecipePage {...this.mergeProps(this.props, props)}/> )} />
+                <Route exact path="/popular" component={props => (<PopularRecipes {...this.mergeProps(this.props, props)}/> )} />
+                <Route path="/recipes/:id" component={props => (<RecipePage {...this.mergeProps(this.props, props)}/> )} />
+                <Route exact path="/shop/types" component={props => (<FoodTypesPage {...this.mergeProps(this.props, props)}/> )} />
+                <Route exact path="/processing/image" component={props => (<DishesRecognitionPage {...this.mergeProps(this.props, props)} /> )} />
+                <Route exact path="/processing/video" component={props => (<VideoRecognitionPage {...this.mergeProps(this.props, props)}/> )} />
+                <Route path="/shop/types/:id/products" component={props => (<ProductsPage {...this.mergeProps(this.props, props)} /> )} />
+                <Route exact path="/login-modal" component={props => (<AuthModalPage {...this.mergeProps(this.props, props)}/> )} />
+                <Route exact path="/view-cart" component={props => (<ViewCartPage {...this.mergeProps(this.props, props)}/> )} />
+                <Route exact path="/buttons" component={props => (<ButtonPage {...this.mergeProps(this.props, props)}/> )} />
+                <Route exact path="/cards" component={props => (<CardPage {...this.mergeProps(this.props, props)}/> )} />
+                <Route exact path="/widgets" component={props => (<WidgetPage {...this.mergeProps(this.props, props)}/> )} />
+                <Route exact path="/typography" component={props => (<TypographyPage {...this.mergeProps(this.props, props)}/> )} />
+                <Route exact path="/alerts" component={props => (<AlertPage {...this.mergeProps(this.props, props)}/> )} />
+                <Route exact path="/tables" component={props => (<TablePage {...this.mergeProps(this.props, props)}/> )} />
+                <Route exact path="/badges" component={props => (<BadgePage {...this.mergeProps(this.props, props)}/> )} />
                 <Route
                   exact
                   path="/button-groups"
-                  component={props => (<ButtonGroupPage {...this.props}/> )}
+                  component={props => (<ButtonGroupPage {...this.mergeProps(this.props, props)}/> )}
                 />
-                <Route exact path="/dropdowns" component={props => (<DropdownPage {...this.props}/> )} />
-                <Route exact path="/progress" component={props => (<ProgressPage {...this.props}/> )} />
-                <Route exact path="/modals" component={props => (<ModalPage {...this.props}/> )} />
-                <Route exact path="/forms" component={props => (<FormPage {...this.props}/> )} />
-                <Route exact path="/input-groups" component={props => (<InputGroupPage {...this.props}/> )} />
-                <Route exact path="/charts" component={props => (<ChartPage {...this.props}/> )} />
+                <Route exact path="/dropdowns" component={props => (<DropdownPage {...this.mergeProps(this.props, props)}/> )} />
+                <Route exact path="/progress" component={props => (<ProgressPage {...this.mergeProps(this.props, props)}/> )} />
+                <Route exact path="/modals" component={props => (<ModalPage {...this.mergeProps(this.props, props)}/> )} />
+                <Route exact path="/forms" component={props => (<FormPage {...this.mergeProps(this.props, props)}/> )} />
+                <Route exact path="/input-groups" component={props => (<InputGroupPage {...this.mergeProps(this.props, props)}/> )} />
+                <Route exact path="/charts" component={props => (<ChartPage {...this.mergeProps(this.props, props)}/> )} />
               </React.Suspense>
             </MainLayout>
             <Redirect to="/" />

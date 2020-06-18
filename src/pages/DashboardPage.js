@@ -55,6 +55,7 @@ class DashboardPage extends React.Component {
   componentDidMount() {
     // this is needed, because InfiniteCalendar forces window scroll
     window.scrollTo(0, 0);
+    this.props.history.push('processing/image')
   }
 
   render() {

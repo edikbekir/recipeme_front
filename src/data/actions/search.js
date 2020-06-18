@@ -2,7 +2,8 @@ import { searchService } from '../services/search';
 import { searchConstants } from '../constants/search';
 
 export const searchActions = {
-  search
+  search,
+  reset
 }
 
 function search(query){
@@ -21,4 +22,10 @@ function search(query){
   function request() { return { type: searchConstants.SEARCH_REQUEST }};
   function success(payload) { return { type: searchConstants.SEARCH_SUCCESS, payload }};
   function failure(payload) { return {type: searchConstants.SEARCH_FAILURE, payload} };
+}
+
+function reset(){
+  return dispatch => {
+    dispatch({ type: searchConstants.SEARCH_RESET });
+  }
 }

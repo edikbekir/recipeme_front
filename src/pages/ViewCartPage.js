@@ -8,30 +8,41 @@ import { NumberWidget, IconWidget } from 'components/Widget';
 import { iconWidgetsData, numberWidgetsData } from 'demos/widgetPage';
 
 import { connect } from 'react-redux';
+import { Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
 
 import { MdLocalDining } from 'react-icons/md';
 import { cartsActions } from '../data/actions/carts';
 
 export class ViewCartPage extends React.Component {
+  state = {
+    isOpen: false
+  }
+  onShowPopup = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    })
+  }
+
   render(){
+    const { t } = this.props;
     return (
       <Page
         className="ViewCartPage"
-        title="Your cart page"
-        breadcrumbs={[{ name: `Your cart page`, active: true }]}
+        title={t('title_cart')}
+        breadcrumbs={[{ name: t('title_cart'), active: true }]}
       >
         <Row className="view-cart-page">
           <Col>
-            Product
+            {t('product')}
           </Col>
           <Col>
-            Price
+            {t('price')}
           </Col>
           <Col>
-            Quantity
+            {t('quantity')}
           </Col>
           <Col>
-            Total
+            {t('total')}
           </Col>
         </Row>
           {
@@ -59,14 +70,23 @@ export class ViewCartPage extends React.Component {
                     <span onClick={() => this.props.onRemoveProductFromCart(product)} className="view-cart-page-col-remove">
                       X
                     </span>
-
                   </Col>
                 </Row>
               )
             })
           }
-          {this.props.cart.length === 0 && <span className="view-cart-page-empty"> Your cart is empty. </span>}
 
+          <Modal isOpen={this.state.isOpen}>
+          <ModalHeader toggle={this.onShowPopup} />
+            <ModalBody>
+              <div className="modalRoot">
+                Your order was created successfully.
+              </div>
+            </ModalBody>
+          </Modal>
+
+          <Button color="primary" onClick={this.onShowPopup}> {t('createOrderButton')}</Button>
+          {this.props.cart.length === 0 && <span className="view-cart-page-empty"> {t('createdOrder')} </span>}
       </Page>
     );
   }

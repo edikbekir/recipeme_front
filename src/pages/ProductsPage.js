@@ -55,7 +55,7 @@ export class ProductsPage extends React.Component {
                   ${product.price} / {product.measurement}
                 </span>
               </div>
-              <ProductCounter product={product} onAddProductToCart={this.props.onAddProductToCart}/>
+              <ProductCounter t={this.props.t} product={product} onAddProductToCart={this.props.onAddProductToCart}/>
             </div>
           </Col>
         )

@@ -20,6 +20,8 @@ export default function reducer(state = initialState, action={}) {
       return { ...state, error: null, loading: true, dishes: [], showDishes: true}
     case recognitionConstants.GET_DISHES_SUCCESS:
       return { ...state, dishes: payload, loading: false, error: null, showDishes: true};
+    case recognitionConstants.RESET:
+      return { ...initialState };
     case recognitionConstants.GET_DISHES_FAILURE:
       return { ...state, dishes: [], loading: false, error: payload, showDishes: true};
     case recognitionConstants.GET_INGREDIENTS_REQUEST:
